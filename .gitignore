@@ -1,0 +1,34 @@
+# Node
+node_modules/
+npm-debug.log*
+
+# dotenv
+.env
+
+# Docker
+docker-compose.override.yml
+*.local
+Dockerfile.local
+
+# Logs
+logs/
+*.log
+*.out
+*.pid
+
+# IDEs
+.vscode/
+.idea/
+*.sw?
+
+# Builds
+dist/
+build/
+
+# React
+frontend/build/
+frontend/node_modules/
+
+# OS
+.DS_Store
+Thumbs.db

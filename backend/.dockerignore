@@ -1,0 +1,9 @@
+node_modules
+.env
+uploads
+*.log
+*.test.js
+.git
+.gitignore
+Dockerfile
+Dockerfile.prod
