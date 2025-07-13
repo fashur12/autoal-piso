@@ -1,22 +1,16 @@
-import React from "react";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import Header from "./components/Header";
-import Footer from "./components/Footer";
-import Home from "./pages/Home";
-import Contact from "./pages/Contact";
-import Gallery from "./pages/Gallery";
+import React from 'react';
+import { Routes, Route } from 'react-router-dom';
+import Index from './components/index';
+import Galeria from './components/galeria';
+import Contacto from './components/contacto';
 
 function App() {
   return (
-    <Router>
-      <Header />
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/contacto" element={<Contact />} />
-        <Route path="/galeria" element={<Gallery />} />
-      </Routes>
-      <Footer />
-    </Router>
+    <Routes>
+      <Route path="/" element={<Index />} />
+      <Route path="/galeria" element={<Galeria />} />
+      <Route path="/contacto" element={<Contacto />} />
+    </Routes>
   );
 }
 

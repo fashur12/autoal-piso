@@ -1,19 +1,20 @@
 {
-  "name": "autos-al-piso-backend",
+  "name": "backend",
   "version": "1.0.0",
-  "description": "Backend de Autos Al Piso - Proyecto Final",
-  "main": "index.js",
-  "type": "module",
+  "main": "server.js",
   "scripts": {
-    "dev": "nodemon index.js"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "node --watch server.js"
   },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
   "dependencies": {
     "cors": "^2.8.5",
-    "dotenv": "^16.6.1",
-    "express": "^4.21.2",
-    "mongoose": "^7.8.7"
-  },
-  "devDependencies": {
-    "nodemon": "^3.1.0"
+    "dotenv": "^16.5.0",
+    "express": "^5.1.0",
+    "joi": "^17.13.3",
+    "mongoose": "^8.0.0"
   }
 }
