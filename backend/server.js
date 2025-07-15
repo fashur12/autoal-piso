@@ -31,6 +31,6 @@ app.use("/api/simulador", simuladorRoutes);
 // Conexión a Mongo y arranque del servidor
 connectDB().then(() => {
   app.listen(PORT, () => {
-    console.log(`🚀 Servidor backend corriendo en http://localhost:${PORT}`);
+    console.log(`Servidor backend corriendo en http://localhost:${PORT}`);
   });
 });
