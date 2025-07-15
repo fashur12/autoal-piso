@@ -1,11 +1,20 @@
 import mongoose from "mongoose";
 
 const promocionSchema = new mongoose.Schema({
-  vehiculoId: { type: mongoose.Schema.Types.ObjectId, ref: "Vehiculo" },
+  titulo: { type: String, required: true },
+  descripcion: String,
+  imagen: String,
   descuento: Number,
-  fechaInicio: Date,
-  fechaFin: Date,
-  activo: { type: Boolean, default: true },
+  vehiculo: {
+    marca: String,
+    modelo: String,
+    anio: Number,
+    precioOriginal: Number,
+    precioConDescuento: Number
+  },
+  desde: Date,
+  hasta: Date,
+  creadoEn: { type: Date, default: Date.now }
 });
 
 export default mongoose.model("Promocion", promocionSchema);

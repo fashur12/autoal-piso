@@ -1,13 +1,13 @@
-import mongoose from "mongoose";
+import mongoose from 'mongoose';
 
-const testDriveSchema = new mongoose.Schema({
-  nombre: String,
-  email: String,
-  telefono: String,
-  fecha: Date,
-  vehiculo: String,
-  sucursal: String,
-  confirmado: { type: Boolean, default: false },
+const TestDriveSchema = new mongoose.Schema({
+  nombre: { type: String, required: true },
+  email: { type: String },
+  telefono: { type: String },
+  fecha: { type: Date, required: true },
+  vehiculo: { type: String, required: true },
+  sucursal: { type: String, required: true },
+  creadoEn: { type: Date, default: Date.now }
 });
 
-export default mongoose.model("TestDrive", testDriveSchema);
+export default mongoose.model('TestDrive', TestDriveSchema);

@@ -1,41 +1,36 @@
-import express from "express";
-import mongoose from "mongoose";
-import cors from "cors";
-import dotenv from "dotenv";
+import express from 'express';
+import cors from 'cors';
+import dotenv from 'dotenv';
+import { connectDB } from './config/database.js';
 
-// las rutas
-import vehiculosRoutes from "./routes/vehiculos.routes.js";
+import vehiculosRoutes from './routes/vehiculos.routes.js';
+import financiamientoRoutes from './routes/financiamiento.routes.js';
+import testDriveRoutes from './routes/testdrive.routes.js';
+import evaluacionRoutes from './routes/evaluacion.routes.js';
+import chatbotRoutes from './routes/chatbot.routes.js';
+import promocionRoutes from "./routes/promociones.routes.js";
 import simuladorRoutes from "./routes/simulador.routes.js";
-import testdriveRoutes from "./routes/testdrive.routes.js";
-import evaluacionRoutes from "./routes/evaluacion.routes.js";
-import promocionesRoutes from "./routes/promociones.routes.js";
-import chatbotRoutes from "./routes/chatbot.routes.js";
 
 dotenv.config();
 const app = express();
+const PORT = process.env.PORT || 5000;
 
-// interceptacion de peticones
 app.use(cors());
 app.use(express.json());
-app.use(express.static("uploads"));
 
 // Rutas
-app.use("/api/vehiculos", vehiculosRoutes);
+app.use('/api/vehiculos', vehiculosRoutes);
+app.use('/api/financiamiento', financiamientoRoutes);
+app.use('/api/testdrive', testDriveRoutes);
+app.use('/api/evaluacion', evaluacionRoutes);
+app.use('/uploads', express.static('uploads'));
+app.use('/api/chatbot', chatbotRoutes);
+app.use("/api/promociones", promocionRoutes);
 app.use("/api/simulador", simuladorRoutes);
-app.use("/api/testdrive", testdriveRoutes);
-app.use("/api/evaluacion", evaluacionRoutes);
-app.use("/api/promociones", promocionesRoutes);
-app.use("/api/chatbot", chatbotRoutes);
 
-// Conexión a MongoDB
-mongoose
-  .connect(process.env.MONGO_URI)
-  .then(() => console.log("MongoDB conectado"))
-  .catch((err) => console.error("Error al conectarse a MongoDB:", err));
-
-// Inicio del servidor
-const PORT = process.env.PORT || 5000;
-app.listen(PORT, () => {
-  console.log(`Servidor corriendo: http://localhost:${PORT}`);
+// Conexión a Mongo y arranque del servidor
+connectDB().then(() => {
+  app.listen(PORT, () => {
+    console.log(`🚀 Servidor backend corriendo en http://localhost:${PORT}`);
+  });
 });
-

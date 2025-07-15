@@ -14,4 +14,4 @@ COPY . .
 EXPOSE 3000
 
 # Comando por defecto
-CMD ["npm", "run", "dev"]
+CMD ["vite", "--host", "0.0.0.0"]
