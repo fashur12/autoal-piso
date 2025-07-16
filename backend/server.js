@@ -37,6 +37,6 @@ app.use('/api/reservas', reservaRoutes);
 connectDB().then(() => {
   console.log('🟢 Conectado a MongoDB');
   app.listen(PORT, () => {
-    console.log(`🚀 Servidor backend corriendo en http://localhost:${PORT}`);
+    console.log(`Servidor backend corriendo en http://localhost:${PORT}`);
   });
 });
