@@ -1,26 +1,8 @@
 import express from 'express';
-import respuestasFAQ from '../utils/respuestasFAQ.js';
+import { responderChatbot } from '../controllers/chatbot.controller.js';
 
 const router = express.Router();
 
-router.post('/', (req, res) => {
-  const { mensaje } = req.body;
-
-  if (!mensaje) return res.status(400).json({ respuesta: 'Mensaje vacío.' });
-
-  const lower = mensaje.toLowerCase();
-
-  const encontrada = respuestasFAQ.find(({ palabrasClave }) =>
-    palabrasClave.some(palabra => lower.includes(palabra))
-  );
-
-  if (encontrada) {
-    return res.json({ respuesta: encontrada.respuesta });
-  } else {
-    return res.json({
-      respuesta: 'No tengo esa información. ¿Quieres hablar con un asesor? Puedes hacerlo por WhatsApp: https://wa.me/549XXXXXXXXX'
-    });
-  }
-});
+router.post('/', responderChatbot);
 
 export default router;

@@ -1,14 +1,23 @@
 import React from 'react';
 import { Routes, Route } from 'react-router-dom';
-import Index from './components/index';
-import Galeria from './components/galeria';
-import Contacto from './components/contacto';
-import EvaluacionForm from './components/evaluacionForm';
-import TestDriveForm from './components/testDriveForm';
-import ReservaForm from './components/reservaForm';
+
+import ChatbotWidget from './components/ChatbotWidget';
+import Index from './components/Index';
+import Galeria from './components/Galeria';
+import Contacto from './components/Contacto';
+import EvaluacionForm from './components/EvaluacionForm';
+import TestDriveForm from './components/TestDriveForm';
+import ReservaForm from './components/ReservaForm';
+import Simulador from './components/Simulador';
+import Evaluaciones from './components/Evaluaciones';
+import Promociones from './components/Promociones';
+import Reservas from './components/Reservas';
+import Comparador from './components/Comparador';
 
 function App() {
   return (
+    <>
+    <ChatbotWidget />
     <Routes>
       <Route path="/" element={<Index />} />
       <Route path="/galeria" element={<Galeria />} />
@@ -16,7 +25,13 @@ function App() {
       <Route path="/evaluacion" element={<EvaluacionForm />} />
       <Route path="/testdrive" element={<TestDriveForm />} />
       <Route path="/reserva" element={<ReservaForm />} />
+      <Route path="/simulador" element={<Simulador/>} />
+      <Route path="/evaluaciones" element={<Evaluaciones/>} />
+      <Route path="/promociones" element={<Promociones/>} />
+      <Route path="/reservas" element={<Reservas/>} />
+      <Route path="/comparar" element={<Comparador />} />
     </Routes>
+    </>
   );
 }
 

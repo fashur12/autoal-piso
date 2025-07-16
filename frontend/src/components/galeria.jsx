@@ -1,37 +1,15 @@
 import React from 'react';
+import Navbar from './Navbar';
 import '../styles/galeria.css';
 
 export default function Galeria() {
-  const toggleMenu = () => {
-    const nav = document.querySelector('.Navbar ul');
-    nav.classList.toggle('show');
-  };
-
   return (
     <>
-      {/* Header */}
-      <header className="head">
-        <div className="logo">
-          <a href="/"><img src="/img/WhatsApp%20Image%202025-04-09%20at%204.21.12%20PM.jpeg" alt="Logo" /></a>
-        </div>
+      <Navbar />
 
-        <button className="menu-toggle" onClick={toggleMenu}>☰</button>
-
-        <nav className="Navbar">
-          <ul>
-            <li><a href="/">Inicio</a></li>
-            <li><a href="/#home">Nosotros</a></li>
-            <li><a href="/galeria">Vehículos</a></li>
-            <li><a href="/contacto">Contáctenos</a></li>
-            <li><i className="bi bi-brightness-high-fill" id="toggleDark"></i></li>
-          </ul>
-        </nav>
-      </header>
-
-      {/* Galería */}
-      <section className="content galeria">
+      <section className="content galeria fade-in">
         <div className="grid-layout">
-          {[1, 2, 3, 4, 5, 6, 11, 8, 9, 10].map((num) => (
+          {[1, 2, 3, 4, 5, 6, 7, 11, 8, 9, 10].map((num) => (
             <React.Fragment key={num}>
               <div className="caja">
                 <img src={`/img/Auto${num}.jpg`} alt={`Auto ${num}`} />
@@ -57,7 +35,6 @@ export default function Galeria() {
         </div>
       </section>
 
-      {/* Footer */}
       <footer className="footer">
         <p>© 2025 Autos Al Piso. Todos los derechos reservados.</p>
         <div className="redes">

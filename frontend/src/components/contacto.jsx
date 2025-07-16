@@ -1,34 +1,12 @@
 import React from 'react';
+import Navbar from './Navbar';
 import '../styles/contacto.css';
 
-export default function Contactos() {
-  const toggleMenu = () => {
-    const nav = document.querySelector('.Navbar ul');
-    nav.classList.toggle('show');
-  };
-
+export default function Contacto() {
   return (
     <>
-      {/* Header */}
-      <header className="head">
-        <div className="logo">
-          <a href="/"><img src="/img/WhatsApp%20Image%202025-04-09%20at%204.21.12%20PM.jpeg" alt="Logo" /></a>
-        </div>
+      <Navbar />
 
-        <button className="menu-toggle" onClick={toggleMenu}>☰</button>
-
-        <nav className="Navbar">
-          <ul>
-            <li><a href="/">Inicio</a></li>
-            <li><a href="/#home">Nosotros</a></li>
-            <li><a href="/galeria">Vehículos</a></li>
-            <li><a href="/contactos">Contáctenos</a></li>
-            <li><i className="bi bi-brightness-high-fill" id="toggleDark"></i></li>
-          </ul>
-        </nav>
-      </header>
-
-      {/* Botón ir arriba */}
       <a className="ir-arriba" href="#" title="Volver arriba">
         <span className="fa-stack">
           <i className="fa fa-circle fa-stack-2x"></i>
@@ -36,8 +14,7 @@ export default function Contactos() {
         </span>
       </a>
 
-      {/* Formulario y Mapa */}
-      <section className="content contacto" id="contacto">
+      <section className="content contacto fade-in" id="contacto">
         <div className="form-mapa-container">
           {/* Formulario */}
           <form className="form-container">
@@ -69,9 +46,9 @@ export default function Contactos() {
               <label htmlFor="opciones">Selecciona una opción:</label>
               <select id="opciones" name="opciones">
                 <option value="">-- Selecciona --</option>
-                <option value="op1">Opción 1</option>
-                <option value="op2">Opción 2</option>
-                <option value="op3">Opción 3</option>
+                <option value="op1">Reunión con vendedor.</option>
+                <option value="op2">Reunión con comprador.</option>
+                <option value="op3">Reunión con administrador.</option>
               </select>
             </div>
 
@@ -106,7 +83,6 @@ export default function Contactos() {
         </div>
       </section>
 
-      {/* Footer */}
       <footer className="footer">
         <p>© 2025 Autos Al Piso. Todos los derechos reservados.</p>
         <div className="redes">

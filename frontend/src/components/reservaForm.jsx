@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
-import axios from 'axios';
+import { postReserva } from '../api/reservas';
 import '../styles/contacto.css';
+import Navbar from './Navbar';
 
 export default function ReservaForm() {
   const [form, setForm] = useState({
@@ -13,6 +14,7 @@ export default function ReservaForm() {
   });
 
   const [mensaje, setMensaje] = useState('');
+  const [loading, setLoading] = useState(false);
 
   const handleChange = (e) => {
     setForm({ ...form, [e.target.name]: e.target.value });
@@ -20,10 +22,17 @@ export default function ReservaForm() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+
+    if (!form.nombre || !form.email || !form.modelo || !form.fechaReserva) {
+      setMensaje('Por favor completa todos los campos obligatorios.');
+      return;
+    }
+
+    setLoading(true);
     setMensaje('Enviando...');
 
     try {
-      await axios.post('/api/reservas', form);
+      await postReserva(form);
       setMensaje('Reserva enviada con éxito.');
       setForm({
         nombre: '',
@@ -34,12 +43,18 @@ export default function ReservaForm() {
         comentarios: '',
       });
     } catch (error) {
+      console.error('Error al enviar reserva:', error);
       setMensaje('Error al enviar la reserva. Intenta nuevamente.');
+    } finally {
+      setLoading(false);
     }
   };
 
   return (
-    <section className="content contacto">
+    <>
+    <Navbar />
+
+    <section className="content contacto fade-in">
       <form className="form-container" onSubmit={handleSubmit}>
         <h2>Reservar Vehículo</h2>
 
@@ -56,17 +71,20 @@ export default function ReservaForm() {
         <input name="modelo" type="text" value={form.modelo} onChange={handleChange} required />
 
         <label>Fecha de reserva:</label>
-        <input name="fechaReserva" type="date" value={form.fechaReserva} onChange={handleChange} />
+        <input name="fechaReserva" type="date" value={form.fechaReserva} onChange={handleChange} required />
 
         <label>Comentarios adicionales:</label>
         <textarea name="comentarios" rows="4" value={form.comentarios} onChange={handleChange} />
 
         <div className="buttons">
-          <button type="submit">Enviar reserva</button>
+          <button type="submit" disabled={loading}>
+            {loading ? 'Enviando...' : 'Enviar reserva'}
+          </button>
         </div>
 
         {mensaje && <p style={{ marginTop: '10px' }}>{mensaje}</p>}
       </form>
     </section>
+    </>
   );
 }

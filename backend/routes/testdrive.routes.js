@@ -1,10 +1,12 @@
 import express from 'express';
-import { body, validationResult } from "express-validator";
-import TestDrive from '../models/TestDrive.js';
+import { body } from "express-validator";
+import {
+  agendarTestDrive,
+  obtenerTestDrives
+} from '../controllers/testdrive.controller.js';
 
 const router = express.Router();
 
-// POST - Agendar un test drive
 router.post(
   "/",
   [
@@ -15,30 +17,9 @@ router.post(
     body("vehiculo").notEmpty().withMessage("Selecciona un vehículo"),
     body("sucursal").notEmpty().withMessage("Selecciona una sucursal")
   ],
-  async (req, res) => {
-    const errores = validationResult(req);
-    if (!errores.isEmpty()) {
-      return res.status(400).json({ errores: errores.array() });
-    }
-
-    try {
-      const nuevo = new TestDrive(req.body);
-      const guardado = await nuevo.save();
-      res.status(201).json(guardado);
-    } catch (err) {
-      res.status(500).json({ error: err.message });
-    }
-  }
+  agendarTestDrive
 );
 
-// GET - Obtener todos los test drives
-router.get('/', async (req, res) => {
-  try {
-    const testDrives = await TestDrive.find().sort({ fecha: -1 });
-    res.json(testDrives);
-  } catch (err) {
-    res.status(500).json({ mensaje: 'Error al obtener datos', error: err.message });
-  }
-});
+router.get('/', obtenerTestDrives);
 
 export default router;
